@@ -14,48 +14,55 @@
     color:#fff; display:flex; align-items:center; justify-content:center; min-height:100vh;
   }
   .card{
-    width:min(920px,92%); background:linear-gradient(180deg, rgba(20,0,40,0.92), rgba(10,0,20,0.96));
-    border:3px solid var(--neon-blue); padding:28px; border-radius:12px; text-align:center;
+    width:min(920px,92%);
+    background:linear-gradient(180deg, rgba(20,0,40,0.92), rgba(10,0,20,0.96));
+    border:3px solid var(--neon-blue);
+    padding:28px; border-radius:12px; text-align:center;
     box-shadow: 0 0 40px rgba(136,0,255,0.12), 0 0 24px rgba(0,170,255,0.08);
   }
-  h1{ margin:0 0 8px; font-size:22px; color:#fff; letter-spacing:1px; font-weight:700; text-transform:none; text-shadow:0 0 12px var(--neon-purple);}
-  p{ display:none; }
-
+  h1{
+    margin:0 0 30px;
+    font-size:22px; color:#fff; letter-spacing:1px;
+    font-weight:700; text-transform:none;
+    text-shadow:0 0 12px var(--neon-purple);
+  }
   /* botão com luizinha */
   .btn-wrap{ position:relative; display:inline-block; margin:22px auto; }
   .btn {
     position:relative;
-    display:inline-block; background:#fff; color:#000; padding:18px 38px; font-weight:800;
-    border-radius:10px; border:4px solid var(--neon-blue); font-size:16px; text-decoration:none;
-    cursor:pointer; z-index:2; transition:transform .12s ease, box-shadow .12s ease;
+    display:inline-block;
+    background:#fff; color:#000;
+    padding:18px 38px; font-weight:800;
+    border-radius:10px; border:4px solid var(--neon-blue);
+    font-size:16px; text-decoration:none;
+    cursor:pointer; z-index:2;
+    transition:transform .12s ease, box-shadow .12s ease;
   }
-  .btn:hover{ transform:translateY(-4px); box-shadow:0 14px 40px rgba(0,170,255,0.12); }
-
+  .btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 40px rgba(0,170,255,0.12);
+  }
   /* glow / luizinha */
   .glow {
-    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:calc(100% + 28px);
-    height:calc(100% + 28px); border-radius:14px; z-index:1; pointer-events:none;
+    position:absolute; left:50%; top:50%;
+    transform:translate(-50%,-50%);
+    width:calc(100% + 28px); height:calc(100% + 28px);
+    border-radius:14px; z-index:1; pointer-events:none;
     background: radial-gradient(60% 60% at 10% 20%, rgba(136,0,255,0.18), transparent 10%),
                 radial-gradient(40% 40% at 90% 80%, rgba(0,170,255,0.12), transparent 8%);
-    filter: blur(8px); opacity:0.9; transition:opacity .25s ease, transform .35s ease;
+    filter: blur(8px); opacity:0.9;
     box-shadow: 0 0 40px var(--neon-blue), 0 0 80px var(--neon-purple);
+    animation: pulse 1.6s infinite;
   }
-  .glow.pulse{ animation: pulse 1.6s infinite; }
   @keyframes pulse {
     0% { transform:translate(-50%,-50%) scale(0.98); opacity:0.85; }
     50% { transform:translate(-50%,-50%) scale(1.08); opacity:1; }
     100% { transform:translate(-50%,-50%) scale(0.98); opacity:0.85; }
   }
-
-  /* actions */
-  .actions { margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-  .link-btn, .copy-btn {
-    background:transparent; color:#cfeaff; padding:8px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);
-    cursor:pointer; font-weight:700; font-size:13px; text-decoration:none;
+  footer{
+    margin-top:30px; color:#cfeaff;
+    font-size:12px; opacity:0.9;
   }
-  .link-btn:hover, .copy-btn:hover { color:#fff; border-color:var(--neon-blue); box-shadow:0 6px 24px rgba(0,170,255,0.06); }
-
-  footer{ margin-top:22px; color:#cfeaff; font-size:12px; opacity:0.9; display:block; }
   @media(max-width:480px){
     .btn{ padding:14px 22px; font-size:15px; }
     h1{ font-size:18px; }
@@ -64,65 +71,16 @@
 </head>
 <body>
 
-<div class="card" role="region" aria-label="Acesso ao servidor privado">
+<div class="card">
   <h1>PROVAS CONFIÁVEL LOJINHA</h1>
 
   <div class="btn-wrap">
-    <button id="goBtn" class="btn" aria-haspopup="false">PROVAS E VÍDEOS</button>
-    <div id="glow" class="glow"></div>
-  </div>
-
-  <div class="actions">
-    <a id="openWeb" class="link-btn" href="https://www.roblox.com/share?code=7d1edd66ecd6f241ad12ebd71954a56a&type=Server" target="_blank" rel="noopener">Abrir</a>
-    <button id="copy" class="copy-btn" title="Copiar link do servidor">Copiar</button>
+    <a href="https://www.roblox.com/share?code=7d1edd66ecd6f241ad12ebd71954a56a&type=Server" target="_blank" class="btn">PROVAS E VÍDEOS</a>
+    <div class="glow"></div>
   </div>
 
   <footer>© 2025 PROVAS CONFIÁVEL LOJINHA</footer>
 </div>
-
-<script>
-  const shareUrl = "https://www.roblox.com/share?code=7d1edd66ecd6f241ad12ebd71954a56a&type=Server";
-  const proto = "roblox-player://v1/launch/?placeId=0&launchData=" + encodeURIComponent(JSON.stringify({shareCode:"7d1edd66ecd6f241ad12ebd71954a56a"}));
-  const goBtn = document.getElementById('goBtn');
-  const glow = document.getElementById('glow');
-  const copyBtn = document.getElementById('copy');
-
-  function tryOpenClientThenWeb(){
-    glow.classList.add('pulse');
-
-    try {
-      const w = window.open(proto, '_blank');
-      if(!w){
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = proto;
-        document.body.appendChild(iframe);
-        setTimeout(()=> { try{ document.body.removeChild(iframe); } catch(e){} }, 1200);
-      }
-    } catch(e){}
-
-    setTimeout(()=> {
-      window.open(shareUrl, '_blank', 'noopener');
-      glow.classList.remove('pulse');
-    }, 1800);
-  }
-
-  goBtn.addEventListener('click', (e)=>{
-    e.preventDefault();
-    tryOpenClientThenWeb();
-  });
-
-  copyBtn.addEventListener('click', async ()=>{
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-    } catch(err){
-      const ta = document.createElement('textarea');
-      ta.value = shareUrl; document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); } catch(e){}
-      document.body.removeChild(ta);
-    }
-  });
-</script>
 
 </body>
 </html>
